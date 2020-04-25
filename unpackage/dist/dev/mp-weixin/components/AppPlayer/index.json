@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "player-tools": "/components/PlayerTools/index"
+  },
+  "component": true
+}

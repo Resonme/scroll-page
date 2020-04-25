@@ -10,11 +10,9 @@
 		"es6": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.2",
-	"appid": "wxcaf4b8684b9b1a4d",
+	"libVersion": "2.11.0",
+	"appid": "wx90fa0929cec59d85",
 	"projectname": "flv-video-app",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

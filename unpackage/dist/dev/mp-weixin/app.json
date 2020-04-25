@@ -4,11 +4,12 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
+    "titleImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Music_Approve_icon.svg/768px-Music_Approve_icon.svg.png",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap17.json"
+  "usingComponents": {}
 }

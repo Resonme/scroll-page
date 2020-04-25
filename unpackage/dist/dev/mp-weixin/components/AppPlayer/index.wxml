@@ -1,0 +1,1 @@
+<view class="app-player"><live-player class="video" id="{{playerId}}" src="{{liveUrl}}" data-event-opts="{{[['statechange',[['onStateChange',['$event']]]]]}}" bindstatechange="__e"></live-player><player-tools vue-id="23914a6c-1" bind:__l="__l"></player-tools></view>

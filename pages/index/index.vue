@@ -1,74 +1,88 @@
 <template>
 	<view class="content">
-		<swiper class="swiper-container" :vertical="true" :circular="true" :duration="500" @change="onChange">
-			<swiper-item class="swiper-item" v-for="(item, index) in swiperArr" :key="index">
+		<!-- navbar -->
+		<Navbar />
+
+		<!-- container -->
+		<swiper class="swiper-container" :vertical="true" :circular="true" :duration="500" @change="onChange"
+		 @animationfinish="animationfinish">
+			<swiper-item class="swiper-item">
 				<view class="flv-item">
-					<image :src="item" mode="aspectFill" style="width: 100%;height: 100%;"></image>
-					<!-- <live-player class="video" src="rtmp://live.hkstv.hk.lxdns.com/live/hks" autoplay @statechange="onStateChange"/> -->
+					<AppPlayer ref="player0" class="video" :live-url="swiperArr[0]" />
 				</view>
 			</swiper-item>
-			<!-- <swiper-item class="swiper-item">
+			<swiper-item class="swiper-item">
 				<view class="flv-item">
-					<live-player class="video" src="rtmp://live.hkstv.hk.lxdns.com/live/hks1" autoplay />
+					<AppPlayer ref="player1" class="video" :live-url="swiperArr[1]" />
 				</view>
-			</swiper-item> -->
+			</swiper-item>
+			<swiper-item class="swiper-item">
+				<view class="flv-item">
+					<AppPlayer ref="player2" class="video" :live-url="swiperArr[2]" />
+				</view>
+			</swiper-item>
 		</swiper>
+
+		<!-- tools -->
+		<PlayerTools />
+
+		<!-- end -->
 	</view>
 </template>
 
 <script>
+	import Navbar from '@/components/Navbar/index.vue'
+	import AppPlayer from '@/components/AppPlayer/index.vue'
 	const imgs = [
-		'https://tse3-mm.cn.bing.net/th/id/OIP.ETlPtOpL72LQQ_zXnBlVAQHaLG?w=198&h=297&c=7&o=5&pid=1.7',
-		'https://tse4-mm.cn.bing.net/th/id/OIP.FV0C_zI48H03IlWVeG2ECwHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-		'https://tse1-mm.cn.bing.net/th/id/OIP.VHumuGZOMq-AaYPrRsUPSgHaNJ?w=169&h=300&c=7&o=5&pid=1.7',
-		// 'https://tse1-mm.cn.bing.net/th/id/OIP._tjbwxzpkBOtMIvYhSKesgAAAA?w=189&h=300&c=7&o=5&pid=1.7',
-		// 'https://tse1-mm.cn.bing.net/th/id/OIP.lfeYYUtzAbovTZgoHmrzFAHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-		// 'https://tse4-mm.cn.bing.net/th/id/OIP._gUfgcwnTmiIB4Xq1oFt_wDIEs?w=198&h=297&c=7&o=5&pid=1.7',
-		// 'https://tse1-mm.cn.bing.net/th/id/OIP.d4ukJjHKw3ZCgY8Z9hlgaAHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-		// 'https://tse4-mm.cn.bing.net/th/id/OIP.nVX8Zj2N3x12i5IZXqyYHwHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-		// 'https://tse3-mm.cn.bing.net/th/id/OIP.Ku6G56lwCJGzvztczmwS2QAAAA?w=171&h=299&c=7&o=5&pid=1.7',
+		'http://live.hzhos.com/live/panta2.flv',
+		'http://live.hzhos.com/live/panta.flv',
 	]
 
+	let activePlayer = null
+
 	export default {
+		components: {
+			Navbar,
+			AppPlayer
+		},
 		data() {
 			return {
-				swiperArr: ['', '', ''], // 长度3 循环
+				swiperArr: ['http://live.hzhos.com/live/panta2.flv', 'http://live.hzhos.com/live/panta.flv', ''], // 长度3 循环
 				swiperIndex: 0,
 				index: 0
 			}
 		},
 		onLoad() {
-			this.setSrc()
+			this.play()
 		},
 		methods: {
-			onStateChange(e) {
-				console.log(e, 'statechange')
-			},
-			setSrc() {
-				this.$set(this.swiperArr, this.swiperIndex, imgs[this.getArrIndex(this.index)])
-				this.$set(this.swiperArr, this.swiperIndex + 1 > this.swiperArr.length - 1 ? 0 : this.swiperIndex + 1, imgs[
-					this.getArrIndex(this.index + 1)])
-				this.$set(this.swiperArr, this.swiperIndex - 1 < 0 ? this.swiperArr.length - 1 : this.swiperIndex - 1, imgs[
-					this.getArrIndex(this.index - 1)])
-			},
-			getArrIndex(index) {
-				console.log(imgs.length, '长度')
-				return index < 0 ? imgs.length + index : index
-			},
+
 			onChange(e) {
 				const current = e.detail.current
-				const cutNum = Number(current) - this.swiperIndex
 				console.log(current, this.swiperIndex, )
-				if (cutNum == 1 || cutNum == -2) {
-					this.index++
-					this.index >= imgs.length - 1 && imgs.push(imgs[Math.floor(Math.random() * imgs.length)])
-				} else {
-					this.index = this.index < 1 ? 0 : this.index - 1
-					this.index <= 1 && imgs.unshift(imgs[Math.floor(Math.random() * imgs.length)])
-				}
+
+			},
+			async animationfinish(e) {
+				const current = e.detail.current
 				this.swiperIndex = current
-				console.log('index = ' + this.index)
-				this.setSrc()
+				this.play()
+
+			},
+			async play() {
+				console.log('player' + this.swiperIndex)
+				try {
+					if (activePlayer) {
+						const data = await activePlayer.stop()
+						console.log(data, 'parse')
+					}
+					activePlayer = this.$refs['player' + this.swiperIndex]
+					const successRes = await activePlayer.play()
+					console.log(successRes, 'successRes')
+
+				} catch (e) {
+					console.log('error', e)
+					//TODO handle the exception
+				}
 			}
 		}
 	}

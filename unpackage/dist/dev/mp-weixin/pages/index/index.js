@@ -140,77 +140,91 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var Navbar = function Navbar() {__webpack_require__.e(/*! require.ensure | components/Navbar/index */ "components/Navbar/index").then((function () {return resolve(__webpack_require__(/*! @/components/Navbar/index.vue */ 33));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var AppPlayer = function AppPlayer() {__webpack_require__.e(/*! require.ensure | components/AppPlayer/index */ "components/AppPlayer/index").then((function () {return resolve(__webpack_require__(/*! @/components/AppPlayer/index.vue */ 49));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var imgs = [
-'https://tse3-mm.cn.bing.net/th/id/OIP.ETlPtOpL72LQQ_zXnBlVAQHaLG?w=198&h=297&c=7&o=5&pid=1.7',
-'https://tse4-mm.cn.bing.net/th/id/OIP.FV0C_zI48H03IlWVeG2ECwHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-'https://tse1-mm.cn.bing.net/th/id/OIP.VHumuGZOMq-AaYPrRsUPSgHaNJ?w=169&h=300&c=7&o=5&pid=1.7'
-// 'https://tse1-mm.cn.bing.net/th/id/OIP._tjbwxzpkBOtMIvYhSKesgAAAA?w=189&h=300&c=7&o=5&pid=1.7',
-// 'https://tse1-mm.cn.bing.net/th/id/OIP.lfeYYUtzAbovTZgoHmrzFAHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-// 'https://tse4-mm.cn.bing.net/th/id/OIP._gUfgcwnTmiIB4Xq1oFt_wDIEs?w=198&h=297&c=7&o=5&pid=1.7',
-// 'https://tse1-mm.cn.bing.net/th/id/OIP.d4ukJjHKw3ZCgY8Z9hlgaAHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-// 'https://tse4-mm.cn.bing.net/th/id/OIP.nVX8Zj2N3x12i5IZXqyYHwHaNK?w=168&h=300&c=7&o=5&pid=1.7',
-// 'https://tse3-mm.cn.bing.net/th/id/OIP.Ku6G56lwCJGzvztczmwS2QAAAA?w=171&h=299&c=7&o=5&pid=1.7',
-];var _default =
+'http://live.hzhos.com/live/panta2.flv',
+'http://live.hzhos.com/live/panta.flv'];
+
+
+var activePlayer = null;var _default =
 
 {
+  components: {
+    Navbar: Navbar,
+    AppPlayer: AppPlayer },
+
   data: function data() {
     return {
-      swiperArr: ['', '', ''], // 长度3 循环
+      swiperArr: ['http://live.hzhos.com/live/panta2.flv', 'http://live.hzhos.com/live/panta.flv', ''], // 长度3 循环
       swiperIndex: 0,
       index: 0 };
 
   },
   onLoad: function onLoad() {
-    this.setSrc();
+    this.play();
   },
   methods: {
-    onStateChange: function onStateChange(e) {
-      console.log(e, 'statechange');
-    },
-    setSrc: function setSrc() {
-      this.$set(this.swiperArr, this.swiperIndex, imgs[this.getArrIndex(this.index)]);
-      this.$set(this.swiperArr, this.swiperIndex + 1 > this.swiperArr.length - 1 ? 0 : this.swiperIndex + 1, imgs[
-      this.getArrIndex(this.index + 1)]);
-      this.$set(this.swiperArr, this.swiperIndex - 1 < 0 ? this.swiperArr.length - 1 : this.swiperIndex - 1, imgs[
-      this.getArrIndex(this.index - 1)]);
-    },
-    getArrIndex: function getArrIndex(index) {
-      console.log(imgs.length, '长度');
-      return index < 0 ? imgs.length + index : index;
-    },
+
     onChange: function onChange(e) {
       var current = e.detail.current;
-      var cutNum = Number(current) - this.swiperIndex;
       console.log(current, this.swiperIndex);
-      if (cutNum == 1 || cutNum == -2) {
-        this.index++;
-        this.index >= imgs.length - 1 && imgs.push(imgs[Math.floor(Math.random() * imgs.length)]);
-      } else {
-        this.index = this.index < 1 ? 0 : this.index - 1;
-        this.index <= 1 && imgs.unshift(imgs[Math.floor(Math.random() * imgs.length)]);
-      }
-      this.swiperIndex = current;
-      console.log('index = ' + this.index);
-      this.setSrc();
+
+    },
+    animationfinish: function animationfinish(e) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var current;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                current = e.detail.current;
+                _this.swiperIndex = current;
+                _this.play();case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+    },
+    play: function play() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var data, successRes;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                console.log('player' + _this2.swiperIndex);_context2.prev = 1;if (!
+
+                activePlayer) {_context2.next = 7;break;}_context2.next = 5;return (
+                  activePlayer.stop());case 5:data = _context2.sent;
+                console.log(data, 'parse');case 7:
+
+                activePlayer = _this2.$refs['player' + _this2.swiperIndex];_context2.next = 10;return (
+                  activePlayer.play());case 10:successRes = _context2.sent;
+                console.log(successRes, 'successRes');_context2.next = 17;break;case 14:_context2.prev = 14;_context2.t0 = _context2["catch"](1);
+
+
+                console.log('error', _context2.t0);
+                //TODO handle the exception
+              case 17:case "end":return _context2.stop();}}}, _callee2, null, [[1, 14]]);}))();
     } } };exports.default = _default;
 
 /***/ }),
