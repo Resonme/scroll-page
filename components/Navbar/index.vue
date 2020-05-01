@@ -1,7 +1,7 @@
 <template>
 	<view class="navbar">
-		<i class="iconfont back">&#xe641;</i>
-		<image class="logo" src="../../static/icon.jpg" mode="aspectFit"></image>
+		<i class="iconfont back" @click="back">&#xe641;</i>
+		<image class="logo" src="../../static/temp/h1.png" mode="aspectFit"></image>
 		<view class="info">
 			<text class="info-title">印上服饰</text>
 			<text class="info-remark">1078观看</text>
@@ -19,6 +19,11 @@
 					return {}
 				}
 			},
+		},
+		methods:{
+			back(){
+				uni.navigateBack()
+			}
 		}
 	}
 </script>

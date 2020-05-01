@@ -1,7 +1,4 @@
 {
-  "navigationBarTitleText": "uni-app",
-  "usingComponents": {
-    "navbar": "/components/Navbar/index",
-    "app-player": "/components/AppPlayer/index"
-  }
+  "navigationBarTitleText": "Dloud商城",
+  "usingComponents": {}
 }

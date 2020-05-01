@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import PlayerTools from '@/components/PlayerTools/index.vue'
+	import PlayerTools from './PlayerTools.vue'
 	export default {
 		components: {
 			PlayerTools
@@ -26,6 +26,9 @@
 			player() {
 				return uni.createLivePlayerContext(this.playerId, this)
 			}
+		},
+		destroyed() {
+			this.stop()
 		},
 		methods: {
 			onStateChange(e) {

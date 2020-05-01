@@ -4,15 +4,14 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
-		"minified": true,
-		"postcss": true,
-		"es6": true
+		"urlCheck": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.0",
-	"appid": "wx90fa0929cec59d85",
-	"projectname": "flv-video-app",
+	"libVersion": "2.9.2",
+	"appid": "touristappid",
+	"projectname": "mix-mall",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

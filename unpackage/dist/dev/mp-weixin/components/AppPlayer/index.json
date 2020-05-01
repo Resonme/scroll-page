@@ -1,6 +1,6 @@
 {
+  "component": true,
   "usingComponents": {
-    "player-tools": "/components/PlayerTools/index"
-  },
-  "component": true
+    "player-tools": "/components/AppPlayer/PlayerTools"
+  }
 }
